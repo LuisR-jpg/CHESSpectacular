@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
 	private Transform camT;
     private SwordController sword;
+    private int itemsCollected = 0;
 
     public float force = 10f;
     public float sensibility = 0.1f;
@@ -40,5 +41,9 @@ public class PlayerController : MonoBehaviour
             attack = false;
             sword.attack();
         }
+    }
+    public void GotItem() {
+        itemsCollected++;
+        print("Got it");
     }
 }
