@@ -11,10 +11,10 @@ public class EnemyController : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
-    public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public float sightRange, attackRange;
+    public float sightRange;
     public bool playerInSightRange, playerInAttackRange;
+    public int hp = 3;
     private void Awake(){
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
@@ -27,7 +27,9 @@ public class EnemyController : MonoBehaviour
     private void Patroling(){
         if(!walkPointSet) SearchWalkPoint();
         else 
+        {
             agent.SetDestination(walkPoint);
+        }
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
         if(distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
@@ -42,4 +44,14 @@ public class EnemyController : MonoBehaviour
     private void ChasePlayer() {
         agent.SetDestination(player.position);
     }   
+    public void OnTriggerEnter(Collider other){
+        if(other.tag == "Weapon") {
+            if(--hp == 0) {
+                Destroy(this.gameObject);
+            }
+            gameObject.transform.GetChild(0).GetComponent<Rigidbody>().AddForce(transform.up * 5f, ForceMode.Impulse);;
+            GameObject weapon = GameObject.Find("PlayerSword");
+            weapon.tag = "Untagged";
+        }
+    }
 }

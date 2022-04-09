@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private int itemsCollected = 0;
 
     public float force = 10f;
-    public float sensibility = 0.1f;
+    public float sensibility = 0.5f;
     private bool attack = false;
     private void Awake() { 
         control = new PlayerControllers();
@@ -45,5 +45,11 @@ public class PlayerController : MonoBehaviour
     public void GotItem() {
         itemsCollected++;
         print("Got it");
+    }
+    public void OnTriggerEnter(Collider other) {
+        if(other.tag == "EnemyWeapon") {
+            print("ahhh");
+            rb.AddForce(transform.up * 10f, ForceMode.Impulse);
+        }
     }
 }
