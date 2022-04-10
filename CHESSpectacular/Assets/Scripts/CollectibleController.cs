@@ -10,8 +10,9 @@ public class CollectibleController : MonoBehaviour
     public PlayerController player;
     private float speed = 0.5f;
     private float wait = 0.75f;
+    public bool startsActive;
     void Start() {
-        door.SetActive(false);
+        door.SetActive(startsActive);
         rb = GetComponent<Rigidbody>();
         cl = GetComponent<Collider>();
         StartCoroutine(Float());
@@ -19,7 +20,7 @@ public class CollectibleController : MonoBehaviour
     private void OnTriggerEnter(Collider other){
         if(other.tag == "Player") {
             player.GotItem();
-            door.SetActive(true);
+            door.SetActive(!startsActive);
             Destroy(this.gameObject);
         }
     }
