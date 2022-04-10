@@ -16,10 +16,14 @@ public class GUI : MonoBehaviour
         DrawItems();
     }
     void DrawItems() {
+        print(PlayerController.itemsCollected);
         for(int i = 0; i < PlayerController.itemsCollected; i++){
-            Image imageChild = transform.GetChild(i).GetComponent<Image>();
-            print(imageChild);
-            imageChild.sprite = board; 
+            print("B" + i.ToString());
+            GameObject img = GameObject.Find("B" + i.ToString());
+            print(img);
+            Image b = img.GetComponent<Image>();
+            b.sprite = board;
+            print(b);
         }
     }
 

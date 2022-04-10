@@ -6,19 +6,21 @@ public class CollectibleController : MonoBehaviour
     Rigidbody rb;
     Collider cl;
     GameObject go;
+    public GameObject door;
+    public PlayerController player;
     private float speed = 0.5f;
     private float wait = 0.75f;
     void Start() {
+        door.SetActive(false);
         rb = GetComponent<Rigidbody>();
         cl = GetComponent<Collider>();
-        go = GameObject.Find("PickupBoard");
         StartCoroutine(Float());
     }
     private void OnTriggerEnter(Collider other){
         if(other.tag == "Player") {
-            go.SetActive(false);
-            PlayerController player = gameObject.AddComponent<PlayerController>();
             player.GotItem();
+            door.SetActive(true);
+            Destroy(this.gameObject);
         }
     }
     IEnumerator Float() {
