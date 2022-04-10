@@ -11,13 +11,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
 	private Transform camT;
     private SwordController sword;
-    private int itemsCollected = 0;
+    public static int itemsCollected = 0;
 
     public float force = 10f;
     public float sensibility = 0.5f;
     private bool attack = false;
     private void Awake() { 
         control = new PlayerControllers();
+        itemsCollected = 0;
         actions = control.Gameplay;
         rb = GetComponent<Rigidbody>();
         camT = transform.GetChild(0);
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
     public void OnTriggerEnter(Collider other) {
         if(other.tag == "EnemyWeapon") {
             print("ahhh");
-            rb.AddForce(transform.up * 10f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 5f, ForceMode.Impulse);
         }
     }
 }
