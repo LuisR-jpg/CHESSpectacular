@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
 	private Transform camT;
     private SwordController sword;
-    public static int itemsCollected = 0;
+    public static int itemsCollected = 0, damage = 0;
 
     public float force = 10f;
     public float sensibility = 0.5f;
@@ -47,10 +47,17 @@ public class PlayerController : MonoBehaviour
         itemsCollected++;
         print("Got it");
     }
+    private void itHurts() {
+        damage++;
+    }
     public void OnTriggerEnter(Collider other) {
         if(other.tag == "EnemyWeapon") {
-            print("ahhh");
             rb.AddForce(transform.up * 5f, ForceMode.Impulse);
+            itHurts();
+        }
+        if(other.tag == "Obstacle") {
+            itHurts();
+            transform.position = new Vector3(0, -75, 195);
         }
     }
 }

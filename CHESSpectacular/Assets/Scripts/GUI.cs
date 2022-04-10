@@ -7,8 +7,8 @@ public class GUI : MonoBehaviour
 {
     PlayerController pc;
     public Sprite board;
+    public Sprite heart;
     public int nItems = 5;
-    public Image[] images;
     void Awake() {
     }
     void Update()
@@ -16,14 +16,15 @@ public class GUI : MonoBehaviour
         DrawItems();
     }
     void DrawItems() {
-        print(PlayerController.itemsCollected);
         for(int i = 0; i < PlayerController.itemsCollected; i++){
-            print("B" + i.ToString());
             GameObject img = GameObject.Find("B" + i.ToString());
-            print(img);
             Image b = img.GetComponent<Image>();
             b.sprite = board;
-            print(b);
+        }
+        for(int i = 0; i < PlayerController.damage; i++){
+            GameObject img = GameObject.Find("H" + i.ToString());
+            Image b = img.GetComponent<Image>();
+            b.sprite = heart;
         }
     }
 
