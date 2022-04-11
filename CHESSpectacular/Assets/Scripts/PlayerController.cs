@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
         }
         if(transform.position.y < -200f)
             Die();
+        if(itemsCollected == 5) Win();
     }
     public void GotItem() {
         itemsCollected++;
@@ -55,6 +56,9 @@ public class PlayerController : MonoBehaviour
     }
     private void Die() {
         SceneController.ToLose();
+    }
+    private void Win() {
+        SceneController.ToWin();
     }
     public void OnTriggerEnter(Collider other) {
         if(other.tag == "EnemyWeapon") {

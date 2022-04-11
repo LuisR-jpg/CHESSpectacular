@@ -14,6 +14,9 @@ public class SceneController: MonoBehaviour
     public static void ToLose(){
         SceneManager.LoadScene("Lost");
     }
+    public static void ToWin(){
+        SceneManager.LoadScene("Won");
+    }
     public void Exit(){
         Application.Quit();
     }

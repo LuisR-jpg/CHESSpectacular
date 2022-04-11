@@ -596,7 +596,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: 47729951ddb06eae13560d6bbc2f44a5
+      Hash: 02217c2feba447c6d7d322aab5eba994
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CollectibleController
@@ -776,7 +776,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 4fadec62db08adb3d77ac279b4386d4c
+      Hash: 51bf7a061acd4e04d258d5702f90d977
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyController

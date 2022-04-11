@@ -9,9 +9,8 @@ public class EnemyController : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     public Vector3 walkPoint;
-    bool walkPointSet;
+    public bool walkPointSet;
     public float walkPointRange;
-    bool alreadyAttacked;
     public float sightRange;
     public bool playerInSightRange, playerInAttackRange;
     public int hp = 3;
@@ -20,16 +19,14 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
     private void Update(){
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        float angle = Vector3.Angle(transform.forward, player.position - transform.position);
+        playerInSightRange = (angle < 45);
         if(!playerInSightRange) Patroling();
         else ChasePlayer();
     }
     private void Patroling(){
         if(!walkPointSet) SearchWalkPoint();
-        else 
-        {
-            agent.SetDestination(walkPoint);
-        }
+        else agent.SetDestination(walkPoint);
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
         if(distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
