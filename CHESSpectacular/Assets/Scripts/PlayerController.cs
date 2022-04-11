@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
 	private Transform camT;
     private SwordController sword;
-    public static int itemsCollected = 0, damage = 0;
+    public static int itemsCollected = 0, damage = 0, nHearts = 10;
 
     public float force = 10f;
     public float sensibility = 0.5f;
@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
             attack = false;
             sword.attack();
         }
+        if(transform.position.y < 200f)
+            Die();
     }
     public void GotItem() {
         itemsCollected++;
@@ -49,6 +51,9 @@ public class PlayerController : MonoBehaviour
     }
     private void itHurts() {
         damage++;
+        if(damage >= nHearts) Die();
+    }
+    private void Die() {
     }
     public void OnTriggerEnter(Collider other) {
         if(other.tag == "EnemyWeapon") {
@@ -58,6 +63,10 @@ public class PlayerController : MonoBehaviour
         if(other.tag == "Obstacle") {
             itHurts();
             transform.position = new Vector3(0, -75, 195);
+        }
+        if(other.tag == "Rook") {
+            itHurts();
+            transform.position = new Vector3(0, -110, 300);
         }
     }
 }
