@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private void Awake() { 
         control = new PlayerControllers();
         itemsCollected = 0;
+        damage = 0;
         actions = control.Gameplay;
         rb = GetComponent<Rigidbody>();
         camT = transform.GetChild(0);

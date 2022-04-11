@@ -14,4 +14,7 @@ public class SceneController: MonoBehaviour
     public static void ToLose(){
         SceneManager.LoadScene("Lost");
     }
+    public void Exit(){
+        Application.Quit();
+    }
 }

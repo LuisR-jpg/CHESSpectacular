@@ -7,12 +7,14 @@ public class CollectibleController : MonoBehaviour
     Collider cl;
     GameObject go;
     public GameObject door;
+    public GameObject nScene;
     public PlayerController player;
     private float speed = 0.5f;
     private float wait = 0.75f;
     public bool startsActive;
     void Start() {
         door.SetActive(startsActive);
+        if(nScene != null) nScene.SetActive(false);
         rb = GetComponent<Rigidbody>();
         cl = GetComponent<Collider>();
         StartCoroutine(Float());
@@ -21,6 +23,7 @@ public class CollectibleController : MonoBehaviour
         if(other.tag == "Player") {
             player.GotItem();
             door.SetActive(!startsActive);
+            if(nScene != null) nScene.SetActive(true);
             Destroy(this.gameObject);
         }
     }
