@@ -42,18 +42,18 @@ public class PlayerController : MonoBehaviour
             attack = false;
             sword.attack();
         }
-        if(transform.position.y < 200f)
+        if(transform.position.y < -200f)
             Die();
     }
     public void GotItem() {
         itemsCollected++;
-        print("Got it");
     }
     private void itHurts() {
         damage++;
         if(damage >= nHearts) Die();
     }
     private void Die() {
+        SceneController.ToLose();
     }
     public void OnTriggerEnter(Collider other) {
         if(other.tag == "EnemyWeapon") {

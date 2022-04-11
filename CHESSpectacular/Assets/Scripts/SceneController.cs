@@ -8,4 +8,10 @@ public class SceneController: MonoBehaviour
     public void ToPlay(){
         SceneManager.LoadScene("First");
     }
+    public void ToMenu(){
+        SceneManager.LoadScene("Menu");
+    }
+    public static void ToLose(){
+        SceneManager.LoadScene("Lost");
+    }
 }
